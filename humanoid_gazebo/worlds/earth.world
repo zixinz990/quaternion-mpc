@@ -34,7 +34,8 @@
         <include>
             <uri>model://ground_plane</uri>
         </include>
-        <model name="static_environment">
+
+        <!-- <model name="static_environment">
         <static>true</static>
             <link name="static_box_1">
                 <pose>0.115 0 0.005 0 0 0</pose>
@@ -86,6 +87,7 @@
                     </geometry>
                 </collision>
             </link>
-        </model>
+        </model> -->
+
     </world>
 </sdf>

@@ -38,6 +38,8 @@ rosrun humanoid_gazebo set_default_body_pose # reset body pose
 
 If you see that the robot is in the right position with the right pose, press `Ctrl+C` to shut down `set_default_body_pose` node. You will see that both feet touch the ground.
 
+In Gazebo, the simulation of foot-ground contact is not accurate, so you can observe the robot's feet slowly sliding forward. If you want to limit this, you can uncomment lines 38-90 in `humanoid_gazebo/worlds/earth.world` file. These lines create invisible blocks around each foot.
+
 In addition, don't forget to connect your joystick to the computer, and run:
 ```
 rosrun joy joy_node
