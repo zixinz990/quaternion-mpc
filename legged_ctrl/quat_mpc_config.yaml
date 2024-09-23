@@ -1,0 +1,43 @@
+robot_name: a1_rw
+mpc_type: quat
+
+robot_mass: 10.71
+robot_inertia_xx: 0.08
+robot_inertia_xy: 0.00
+robot_inertia_xz: 0.01
+robot_inertia_yy: 0.11
+robot_inertia_yz: 0.00
+robot_inertia_zz: 0.07
+
+mpc_dt: 0.005
+mpc_horizon: 20
+
+mpc_q_0: 0.0
+mpc_q_1: 0.0
+mpc_q_2: 0.0
+mpc_q_3: 0.0
+
+mpc_q_4: 1.0
+mpc_q_5: 1.0
+mpc_q_6: 1.0
+
+mpc_q_7: 0.01
+mpc_q_8: 0.01
+
+mpc_quat_weight: 1000.0
+
+mpc_r_0: 0.00001
+mpc_r_1: 0.00001
+
+joint_kp: 300.0
+joint_kd: 10.0
+
+joy_vel_x_max: 0.1
+joy_vel_y_max: 0.1
+joy_vel_z_max: 0.1
+
+joy_roll_vel_max: 3.14
+joy_pitch_vel_max: 3.14
+joy_yaw_vel_max: 3.14
+
+torso_z_max: 0.85

@@ -1,0 +1,187 @@
+<?xml version="1.0"?>
+
+<robot name="a1_rw" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:arg name="DEBUG" default="false"/>        
+
+    <xacro:include filename="$(find a1_rw_description)/xacro/const.xacro"/>
+    <xacro:include filename="$(find a1_rw_description)/xacro/materials.xacro"/>
+    <xacro:include filename="$(find a1_rw_description)/xacro/leg.xacro"/>
+    <xacro:include filename="$(find a1_rw_description)/xacro/stairs.xacro"/>
+    <xacro:include filename="$(find a1_rw_description)/xacro/gazebo.xacro"/>
+
+    <!-- Rollover Protection mode will add an additional stick on the top, use "true" or "false" to switch it. -->
+    <xacro:property name="rolloverProtection" value="false"/>
+
+    <!-- Debug mode will hung up the robot, use "true" or "false" to switch it. -->
+    <xacro:if value="$(arg DEBUG)">
+        <link name="world"/>
+        <joint name="base_static_joint" type="fixed">
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <parent link="world"/>
+            <child link="base"/>
+        </joint>
+    </xacro:if> 
+
+    <link name="base">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <box size="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="floating_base" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <parent link="base"/>
+        <child link="trunk"/>
+    </joint>
+
+    <link name="trunk">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="package://a1_rw_description/meshes/trunk.dae" scale="1 1 1"/>
+            </geometry>
+            <material name="orange"/>
+        </visual>
+        <inertial>
+            <origin rpy="0 0 0" xyz="${trunk_com_x} ${trunk_com_y} ${trunk_com_z}"/>
+            <mass value="${trunk_mass}"/>
+            <inertia
+                ixx="${trunk_ixx}" ixy="${trunk_ixy}" ixz="${trunk_ixz}"
+                iyy="${trunk_iyy}" iyz="${trunk_iyz}"
+                izz="${trunk_izz}"/>  
+        </inertial>
+    </link>
+
+    <joint name="imu_joint" type="fixed">
+        <parent link="trunk"/>
+        <child link="imu_link"/>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+    </joint>
+
+    <link name="imu_link">
+        <inertial>
+            <mass value="0.001"/>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+        </inertial>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <box size="0.001 0.001 0.001"/>
+            </geometry>
+            <material name="red"/>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <box size=".001 .001 .001"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="base_link">
+        <inertial>
+            <origin xyz="0.0026038995042581 -0.0740490943270337 0.0694515969568454" rpy="0 0 0"/>
+            <mass value="2.27585184177867"/>
+            <inertia ixx="0.00269192131058548" ixy="-1.60048667500493E-06" ixz="2.62534222384217E-07" iyy="0.00322414588067439" iyz="0.000180161400738552" izz="0.00320797475119015"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://a1_rw_description/meshes/base_link.STL"/>
+            </geometry>
+            <material name="">
+                <color rgba="0.847058823529412 0.847058823529412 0.847058823529412 1"/>
+            </material>
+        </visual>
+    </link>
+
+    <joint name="backpack_connection" type="fixed">
+        <origin xyz="0 0 0.055" rpy="0 0 1.57079632679489"/>
+        <parent link="trunk"/>
+        <child link="base_link"/>
+    </joint>
+
+    <link name="rwx">
+        <inertial>
+            <origin xyz="2.11694828333719E-11 4.47206311478959E-10 0.0346816748196828" rpy="0 0 0"/>
+            <mass value="1.30351405536484"/>
+            <inertia ixx="0.00271165021972425" ixy="1.62817777047674E-08" ixz="-8.58134995976747E-12" iyy="0.00271170564663939" iyz="1.07399173903702E-11" izz="0.00527518299832296"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://a1_rw_description/meshes/rwx.STL"/>
+            </geometry>
+            <material name="">
+                <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://a1_rw_description/meshes/rwx.STL"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="joint_rwx" type="continuous">
+        <origin xyz="0 -0.09729 0.0919999999999999" rpy="-1.5707963267949 0 0"/>
+        <parent link="base_link"/>
+        <child link="rwx"/>
+        <axis xyz="0 0 1"/>
+        <dynamics damping="0.0" friction="0."/>
+    </joint>
+
+    <link name="rwy">
+        <inertial>
+            <origin xyz="-2.54625994081104E-07 7.07442964209548E-08 0.0364184294382762" rpy="0 0 0"/>
+            <mass value="1.12728695649087"/>
+            <inertia ixx="0.000962317962998777" ixy="1.4679589412309E-08" ixz="6.6087002464196E-11" iyy="0.000962369623284224" iyz="1.53941482098914E-11" izz="0.00189043287041886"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://a1_rw_description/meshes/rwy.STL"/>
+            </geometry>
+            <material name="">
+                <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://a1_rw_description/meshes/rwy.STL"/>
+            </geometry>
+        </collision>
+    </link>
+    
+    <joint name="joint_rwy" type="continuous">
+        <origin xyz="0.0324749999999997 0.0569999999999978 0.0920000000000013" rpy="1.57079632679489 -0.651399930466687 -1.57079632679489"/>
+        <parent link="base_link"/>
+        <child link="rwy"/>
+        <axis xyz="0 0 -1"/>
+        <dynamics damping="0.0" friction="0."/>
+    </joint>
+
+    <xacro:leg name="FR" mirror="-1" mirror_dae="False" front_hind="1" front_hind_dae="True">
+        <origin rpy="0 0 0" xyz="${leg_offset_x} ${-leg_offset_y} 0"/>
+    </xacro:leg>
+
+    <xacro:leg name="FL" mirror="1" mirror_dae="True" front_hind="1" front_hind_dae="True">
+        <origin rpy="0 0 0" xyz="${leg_offset_x} ${leg_offset_y} 0"/>
+    </xacro:leg>
+
+    <xacro:leg name="RR" mirror="-1" mirror_dae="False" front_hind="-1" front_hind_dae="False">
+        <origin rpy="0 0 0" xyz="${-leg_offset_x} ${-leg_offset_y} 0"/>
+    </xacro:leg>
+
+    <xacro:leg name="RL" mirror="1" mirror_dae="True" front_hind="-1" front_hind_dae="False">
+        <origin rpy="0 0 0" xyz="${-leg_offset_x} ${leg_offset_y} 0"/>
+    </xacro:leg>
+
+</robot>

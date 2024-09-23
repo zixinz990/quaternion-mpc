@@ -1,0 +1,28 @@
+<launch>
+    <arg name="k" default="1" />
+
+    <rosparam file="$(find legged_ctrl)/euler_mpc_config.yaml" command="load"/>
+    <node pkg="legged_ctrl" type="main" name="main" output="screen"/>
+
+    <node pkg="rosbag" type="record" name="rosbag_record" 
+          args="record -o /home/zixin/falling-cat-$(arg k).bag
+                /a1_rw_gazebo/FL_calf_controller/state
+                /a1_rw_gazebo/FL_hip_controller/state
+                /a1_rw_gazebo/FL_thigh_controller/state
+                /a1_rw_gazebo/FR_calf_controller/state
+                /a1_rw_gazebo/FR_hip_controller/state
+                /a1_rw_gazebo/FR_thigh_controller/state
+                /a1_rw_gazebo/RL_calf_controller/state
+                /a1_rw_gazebo/RL_hip_controller/state
+                /a1_rw_gazebo/RL_thigh_controller/state
+                /a1_rw_gazebo/RR_calf_controller/state
+                /a1_rw_gazebo/RR_hip_controller/state
+                /a1_rw_gazebo/RR_thigh_controller/state
+                /a1_rw_gazebo/RWX_controller/command
+                /a1_rw_gazebo/RWY_controller/command
+                /a1_rw_gazebo/target_pose
+                /clock
+                /gazebo/model_states
+                /torso_odom
+                /trunk_imu"/>
+</launch>
