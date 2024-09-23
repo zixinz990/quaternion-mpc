@@ -1,0 +1,60 @@
+robot_name: mit_humanoid
+
+robot_mass: 24.267546
+robot_inertia_xx: 0.77
+robot_inertia_xy: 0.00
+robot_inertia_xz: 0.00
+robot_inertia_yy: 0.41
+robot_inertia_yz: 0.00
+robot_inertia_zz: 0.45
+
+mu: 0.7
+grf_z_max: 1000.0
+
+mpc_dt: 0.01
+mpc_horizon: 20
+
+mpc_q_0: 75.0
+mpc_q_1: 25.0
+mpc_q_2: 25.0
+
+mpc_q_3: 0.0
+mpc_q_4: 0.0
+mpc_q_5: 0.0
+mpc_q_6: 0.0
+
+mpc_q_7: 5.0
+mpc_q_8: 1.0
+mpc_q_9: 1.0
+
+mpc_q_10: 2.0
+mpc_q_11: 2.0
+mpc_q_12: 2.0
+
+mpc_quat_weight: 50.0
+
+mpc_r_0: 0.000001
+mpc_r_1: 0.000001
+mpc_r_2: 0.000001
+mpc_r_3: 0.000001
+mpc_r_4: 0.000001
+mpc_r_5: 0.000001
+mpc_r_6: 0.000001
+mpc_r_7: 0.000001
+mpc_r_8: 0.000001
+mpc_r_9: 0.000001
+mpc_r_10: 0.000001
+mpc_r_11: 0.000001
+
+joint_kp: 300.0
+joint_kd: 10.0
+
+joy_vel_x_max: 0.1
+joy_vel_y_max: 0.1
+joy_vel_z_max: 0.1
+
+joy_roll_vel_max: 0.1
+joy_pitch_vel_max: 0.2
+joy_yaw_vel_max: 0.2
+
+torso_z_max: 0.85

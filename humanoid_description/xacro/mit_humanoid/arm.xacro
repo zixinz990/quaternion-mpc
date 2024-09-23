@@ -1,0 +1,231 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <link name="left_shoulder">
+        <inertial>
+            <origin xyz="0.009518 0.053027 0.000060" rpy="0 0 0"/>
+            <mass value="0.788506"/>
+            <inertia ixx="0.001363" ixy="0.000024" ixz="-0.000002" iyy="0.000759" iyz="0.000001" izz="0.000866"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://humanoid_description/meshes/mit_humanoid/left_shoulder1.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+    <joint name="left_shoulder_pitch_joint" type="fixed">
+        <origin xyz="0.01911 0.17608 0.30392" rpy="0 0.524 0"/>
+        <parent link="torso"/>
+        <child link="left_shoulder"/>
+        <axis xyz="0 1 0"/>
+        <limit effort="34" lower="-6.28" upper="6.28" velocity="50"/>
+        <dynamics damping="0.01" friction="0.2" rotor_inertia="0.01188"/>
+    </joint>
+    <link name="left_shoulder_2">
+        <inertial>
+            <origin xyz="0.000117 0.000122 -0.082758" rpy="0 0 0"/>
+            <mass value="0.801249"/>
+            <inertia ixx="0.001136" ixy="0.0" ixz="0.000016" iyy="0.001175" iyz="0.0" izz="0.001241"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://humanoid_description/meshes/mit_humanoid/left_shoulder2.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+    <joint name="left_shoulder_abad_joint" type="fixed">
+        <origin xyz="0 0.05760 0" rpy="0 0 0"/>
+        <parent link="left_shoulder"/>
+        <child link="left_shoulder_2"/>
+        <axis xyz="1 0 0"/>
+        <limit effort="34" lower="-6.28" upper="6.28" velocity="50"/>
+        <dynamics damping="0.01" friction="0.2" rotor_inertia="0.01188"/>
+    </joint>
+    <link name="left_upper_arm">
+        <inertial>
+            <origin xyz="-0.000073 -0.016471 -0.063210" rpy="0 0 0"/>
+            <mass value="0.905588"/>
+            <inertia ixx="0.001353" ixy="0.0" ixz="0.0" iyy="0.001804" iyz="-0.000061" izz="0.000796"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://humanoid_description/meshes/mit_humanoid/left_shoulder3.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 -0.01 -0.035"/>
+            <geometry>
+                <box size="0.01 0.01 0.01"/>
+            </geometry>
+        </collision>
+    </link>
+    <joint name="left_shoulder_yaw_joint" type="fixed">
+        <origin xyz="0 0 -0.10250" rpy="0.0 0 0"/>
+        <parent link="left_shoulder_2"/>
+        <child link="left_upper_arm"/>
+        <axis xyz="0 0 -1"/>
+        <limit effort="34" lower="-6.28" upper="6.28" velocity="50"/>
+        <dynamics damping="0.01" friction="0.2" rotor_inertia="0.01188"/>
+    </joint>
+    <link name="left_lower_arm">
+        <inertial>
+            <origin xyz="-0.007103 -0.000073 -0.099203" rpy="0 0 0"/>
+            <mass value="0.348390"/>
+            <inertia ixx="0.003400" ixy="0.0" ixz="-0.000049" iyy="0.003453" iyz="0.0" izz="0.000078"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://humanoid_description/meshes/mit_humanoid/left_forearm.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="-0.01 0 -0.15"/>
+            <geometry>
+                <box size="0.01 0.01 0.01"/>
+            </geometry>
+        </collision>
+    </link>
+    <joint name="left_elbow_joint" type="fixed">
+        <origin xyz="0 0 -0.15750" rpy="0 -1.57 0.0"/>
+        <parent link="left_upper_arm"/>
+        <child link="left_lower_arm"/>
+        <axis xyz="0 1 0"/>
+        <limit effort="55" lower="-6.28" upper="6.28" velocity="50"/>
+        <dynamics damping="0.01" friction="0.2" rotor_inertia="0.0304"/>
+    </joint>
+    <link name="left_hand">
+        <inertial>
+            <origin xyz="0.0 -0.0 -0.27" rpy="0 0 0"/>
+            <mass value="0.01"/>
+            <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+        </inertial>
+        <collision>
+            <origin rpy="1.57079 0 0" xyz="0.0 0.0 0."/>
+            <geometry>
+                <box size="0.01 0.01 0.01"/>
+            </geometry>
+        </collision>
+    </link>
+    <joint name="left_hand_joint" type="fixed">
+        <origin xyz="0 0 -0.27" rpy="0 0 0"/>
+        <parent link="left_lower_arm"/>
+        <child link="left_hand"/>
+    </joint>
+    <link name="right_shoulder">
+        <inertial>
+            <origin xyz="0.009518 -0.053027 0.000060" rpy="0 0 0"/>
+            <mass value="0.788506"/>
+            <inertia ixx="0.001363" ixy="-0.000024" ixz="-0.000002" iyy="0.000759" iyz="-0.000001" izz="0.000866"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://humanoid_description/meshes/mit_humanoid/left_shoulder1.stl" scale="0.001 -0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+    <joint name="right_shoulder_pitch_joint" type="fixed">
+        <origin xyz="0.01911 -0.17608 0.30392" rpy="0 0.524 0"/>
+        <parent link="torso"/>
+        <child link="right_shoulder"/>
+        <axis xyz="0 1 0"/>
+        <limit effort="34" lower="-6.28" upper="6.28" velocity="50"/>
+        <dynamics damping="0.01" friction="0.2" rotor_inertia="0.01188"/>
+    </joint>
+    <link name="right_shoulder_2">
+        <inertial>
+            <origin xyz="0.000117 -0.000122 -0.082758" rpy="0 0 0"/>
+            <mass value="0.801249"/>
+            <inertia ixx="0.001136" ixy="0.0" ixz="0.000016" iyy="0.001175" iyz="0.0" izz="0.001241"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://humanoid_description/meshes/mit_humanoid/left_shoulder2.stl" scale="0.001 -0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+    <joint name="right_shoulder_abad_joint" type="fixed">
+        <origin xyz="0 -0.05760 0" rpy="0 0 0"/>
+        <parent link="right_shoulder"/>
+        <child link="right_shoulder_2"/>
+        <axis xyz="-1 0 0"/>
+        <limit effort="34" lower="-6.28" upper="6.28" velocity="50"/>
+        <dynamics damping="0.01" friction="0.2" rotor_inertia="0.01188"/>
+    </joint>
+    <link name="right_upper_arm">
+        <inertial>
+            <origin xyz="-0.000073 0.016471 -0.063210" rpy="0 0 0"/>
+            <mass value="0.905588"/>
+            <inertia ixx="0.001353" ixy="0.0" ixz="0.0" iyy="0.001804" iyz="0.000061" izz="0.000796"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://humanoid_description/meshes/mit_humanoid/left_shoulder3.stl" scale="0.001 -0.001 0.001"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 -0.01 -0.035"/>
+            <geometry>
+                <box size="0.01 0.01 0.01"/>
+            </geometry>
+        </collision>
+    </link>
+    <joint name="right_shoulder_yaw_joint" type="fixed">
+        <origin xyz="0 0 -0.10250" rpy="0.0 0 0"/>
+        <parent link="right_shoulder_2"/>
+        <child link="right_upper_arm"/>
+        <axis xyz="0 0 1"/>
+        <limit effort="34" lower="-6.28" upper="6.28" velocity="50"/>
+        <dynamics damping="0.01" friction="0.2" rotor_inertia="0.01188"/>
+    </joint>
+    <link name="right_lower_arm">
+        <inertial>
+            <origin xyz="-0.007103 -0.000073 -0.099203" rpy="0 0 0"/>
+            <mass value="0.348390"/>
+            <inertia ixx="0.003400" ixy="0.0" ixz="-0.000049" iyy="0.003453" iyz="0.0" izz="0.000078"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://humanoid_description/meshes/mit_humanoid/left_forearm.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="-0.01 0 -0.15"/>
+            <geometry>
+                <box size="0.01 0.01 0.01"/>
+            </geometry>
+        </collision>
+    </link>
+    <joint name="right_elbow_joint" type="fixed">
+        <origin xyz="0 0 -.15750" rpy="0 -1.57 0.0"/>
+        <parent link="right_upper_arm"/>
+        <child link="right_lower_arm"/>
+        <axis xyz="0 1 0"/>
+        <limit effort="55" lower="-6.28" upper="6.28" velocity="50"/>
+        <dynamics damping="0.01" friction="0.2" rotor_inertia="0.0304"/>
+    </joint>
+    <link name="right_hand">
+        <inertial>
+            <origin xyz="0.0 -0.0 -0.27" rpy="0 0 0"/>
+            <mass value="0.01"/>
+            <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+        </inertial>
+        <collision>
+            <origin rpy="1.57079 0 0" xyz="0.0 0.0 0."/>
+            <geometry>
+                <box size="0.01 0.01 0.01"/>
+            </geometry>
+        </collision>
+    </link>
+    <joint name="right_hand_joint" type="fixed">
+        <origin xyz="0 0 -0.27" rpy="0 0 0"/>
+        <parent link="right_lower_arm"/>
+        <child link="right_hand"/>
+    </joint>
+</robot>

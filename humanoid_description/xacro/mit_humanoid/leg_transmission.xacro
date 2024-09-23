@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="leg_transmission" params="leg_name">
+        <transmission name="${leg_name}_hip_yaw_trans">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="${leg_name}_hip_yaw_joint">
+                <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            </joint>
+            <actuator name="${leg_name}_hip_yaw_actuator">
+                <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
+        <transmission name="${leg_name}_hip_abad_trans">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="${leg_name}_hip_abad_joint">
+                <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            </joint>
+            <actuator name="${leg_name}_hip_abad_actuator">
+                <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
+        <transmission name="${leg_name}_hip_pitch_trans">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="${leg_name}_hip_pitch_joint">
+                <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            </joint>
+            <actuator name="${leg_name}_hip_pitch_actuator">
+                <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
+        <transmission name="${leg_name}_knee_trans">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="${leg_name}_knee_joint">
+                <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            </joint>
+            <actuator name="${leg_name}_knee_actuator">
+                <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
+        <transmission name="${leg_name}_ankle_trans">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="${leg_name}_ankle_joint">
+                <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            </joint>
+            <actuator name="${leg_name}_ankle_actuator">
+                <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
+    </xacro:macro>
+</robot>

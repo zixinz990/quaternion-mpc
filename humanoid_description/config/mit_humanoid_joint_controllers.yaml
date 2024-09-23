@@ -1,0 +1,59 @@
+mit_humanoid:
+
+    joint_state_controller:
+        type: joint_state_controller/JointStateController
+        publish_rate: 1000  
+
+    # LEFT LEG
+    
+    left_hip_yaw_controller:
+        type: unitree_legged_control/UnitreeJointController
+        joint: left_hip_yaw_joint
+        pid: {p: 100.0, i: 0.0, d: 5.0}
+    
+    left_hip_abad_controller:
+        type: unitree_legged_control/UnitreeJointController
+        joint: left_hip_abad_joint
+        pid: {p: 100.0, i: 0.0, d: 5.0}
+    
+    left_hip_pitch_controller:
+        type: unitree_legged_control/UnitreeJointController
+        joint: left_hip_pitch_joint
+        pid: {p: 100.0, i: 0.0, d: 5.0}
+    
+    left_knee_controller:
+        type: unitree_legged_control/UnitreeJointController
+        joint: left_knee_joint
+        pid: {p: 100.0, i: 0.0, d: 5.0}
+    
+    left_ankle_controller:
+        type: unitree_legged_control/UnitreeJointController
+        joint: left_ankle_joint
+        pid: {p: 100.0, i: 0.0, d: 5.0}
+    
+    # RIGHT LEG
+
+    right_hip_yaw_controller:
+        type: unitree_legged_control/UnitreeJointController
+        joint: right_hip_yaw_joint
+        pid: {p: 100.0, i: 0.0, d: 5.0}
+    
+    right_hip_abad_controller:
+        type: unitree_legged_control/UnitreeJointController
+        joint: right_hip_abad_joint
+        pid: {p: 100.0, i: 0.0, d: 5.0}
+    
+    right_hip_pitch_controller:
+        type: unitree_legged_control/UnitreeJointController
+        joint: right_hip_pitch_joint
+        pid: {p: 100.0, i: 0.0, d: 5.0}
+    
+    right_knee_controller:
+        type: unitree_legged_control/UnitreeJointController
+        joint: right_knee_joint
+        pid: {p: 100.0, i: 0.0, d: 5.0}
+    
+    right_ankle_controller:
+        type: unitree_legged_control/UnitreeJointController
+        joint: right_ankle_joint
+        pid: {p: 100.0, i: 0.0, d: 5.0}

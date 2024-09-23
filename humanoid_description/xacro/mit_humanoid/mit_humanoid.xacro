@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="mit_humanoid" xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:include filename="$(find humanoid_description)/xacro/mit_humanoid/leg.xacro"/>
+    <xacro:include filename="$(find humanoid_description)/xacro/mit_humanoid/arm.xacro"/>
+    <xacro:include filename="$(find humanoid_description)/xacro/mit_humanoid/leg_transmission.xacro"/>
+    <xacro:include filename="$(find humanoid_description)/xacro/mit_humanoid/gazebo_config.xacro"/>
+    <link name="base">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <box size="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+    <link name="torso">
+        <inertial>
+            <origin xyz="0.009598 0.000935 0.151714" rpy="0 0 0"/>
+            <mass value="7.954054"/>
+            <inertia ixx="0.168459" ixy="0.0" ixz="0.006493" iyy="0.101358" iyz="0.0" izz="0.091754"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://humanoid_description/meshes/mit_humanoid/torso.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0.023 0. 0.08"/>
+            <geometry>
+                <box size="0.01 0.01 0.01"/>
+            </geometry>
+        </collision>
+    </link>
+    <joint name="floating_base" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <parent link="base"/>
+        <child link="torso"/>
+    </joint>
+    <link name="torso_com">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <sphere radius="0.001"/>
+            </geometry>
+        </visual>
+    </link>
+    <joint name="torso_com_joint" type="fixed">
+        <origin xyz="-0.005546 0.000416 0.111722" rpy="0 0 0"/>
+        <parent link="torso"/>
+        <child link="torso_com"/>
+    </joint>
+    <xacro:leg_transmission leg_name="left"/>
+    <xacro:leg_transmission leg_name="right"/>
+</robot>

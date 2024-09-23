@@ -1,0 +1,41 @@
+<launch>
+    <arg name="wname" default="earth"/>
+    <arg name="rname" default="mit_humanoid"/>
+    <arg name="robot_path" value="$(find humanoid_description)"/>
+    <arg name="debug" default="false"/>
+    <arg name="gui" default="true"/>
+    <arg name="paused" default="true"/>
+    <arg name="use_sim_time" default="true"/>
+    <arg name="headless" default="false"/>
+
+    <param name="robot_name" value="$(arg rname)"/>
+    
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(find humanoid_gazebo)/worlds/$(arg wname).world"/>
+        <arg name="debug" value="$(arg debug)"/>
+        <arg name="gui" value="$(arg gui)"/>
+        <arg name="paused" value="$(arg paused)"/>
+        <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+        <arg name="headless" value="$(arg headless)"/>
+    </include>
+
+    <param name="robot_description"
+           command="$(find xacro)/xacro --inorder $(arg robot_path)/xacro/$(arg rname)/$(arg rname).xacro"/>
+
+    <node pkg="gazebo_ros" type="spawn_model" name="urdf_spawner" respawn="false" output="screen"
+          args="-urdf -z 2 -model $(arg rname) -param robot_description -unpause"/>
+
+    <rosparam file="$(arg robot_path)/config/$(arg rname)_joint_controllers.yaml" command="load"/>
+
+    <node pkg="controller_manager" type="spawner" name="controller_spawner" respawn="false"
+          output="screen" ns="$(arg rname)"
+          args="joint_state_controller
+                left_hip_yaw_controller left_hip_abad_controller left_hip_pitch_controller left_knee_controller left_ankle_controller
+                right_hip_yaw_controller right_hip_abad_controller right_hip_pitch_controller right_knee_controller right_ankle_controller"/>
+
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"
+          respawn="false" output="screen">
+        <remap from="/joint_states" to="/$(arg rname)/joint_states"/>
+    </node>
+
+</launch>

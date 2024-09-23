@@ -1,0 +1,4 @@
+<launch>
+    <rosparam file="$(find humanoid_mpc_control)/quat_mpc_config.yaml" command="load"/>
+    <node pkg="humanoid_mpc_control" type="main" name="main" output="screen"/>
+</launch>

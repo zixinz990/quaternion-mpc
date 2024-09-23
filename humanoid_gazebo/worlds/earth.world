@@ -1,0 +1,91 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+    <world name="default">
+        <physics type="ode">
+        <max_step_size>0.00015</max_step_size>
+        <real_time_factor>0.5</real_time_factor>
+        <real_time_update_rate>2500</real_time_update_rate>
+        <gravity>0 0 -9.81</gravity>
+            <ode>
+                <solver>
+                    <type>quick</type>
+                    <iters>120</iters>
+                    <sor>1.3</sor>
+                    <friction_model>cone_model</friction_model>
+                </solver>  
+                <constraints>
+                    <cfm>0.0</cfm>
+                    <erp>0.2</erp>
+                    <contact_max_correcting_vel>0.1</contact_max_correcting_vel>
+                    <contact_surface_layer>0.0001</contact_surface_layer>
+                </constraints>
+            </ode>
+        </physics>
+        <scene>
+            <sky>
+                <clouds>
+                    <speed>12</speed>
+                </clouds>
+            </sky>
+        </scene>
+        <include>
+            <uri>model://sun</uri>
+        </include>
+        <include>
+            <uri>model://ground_plane</uri>
+        </include>
+        <model name="static_environment">
+        <static>true</static>
+            <link name="static_box_1">
+                <pose>0.115 0 0.005 0 0 0</pose>
+                <collision name="static_box_collision_1">
+                    <geometry>
+                        <box>
+                            <size>0.05 0.3 0.01</size>
+                        </box>
+                    </geometry>
+                </collision>
+            </link>
+            <link name="static_box_2">
+                <pose>-0.12 0 0.005 0 0 0</pose>
+                <collision name="static_box_collision_2">
+                    <geometry>
+                        <box>
+                            <size>0.05 0.3 0.01</size>
+                        </box>
+                    </geometry>
+                </collision>
+            </link>
+            <link name="static_box_3">
+                <pose>0 0.13 0.005 0 0 0</pose>
+                <collision name="static_box_collision_3">
+                    <geometry>
+                        <box>
+                            <size>0.17 0.05 0.01</size>
+                        </box>
+                    </geometry>
+                </collision>
+            </link>
+            <link name="static_box_4">
+                <pose>0 -0.13 0.005 0 0 0</pose>
+                <collision name="static_box_collision_4">
+                    <geometry>
+                        <box>
+                            <size>0.17 0.05 0.01</size>
+                        </box>
+                    </geometry>
+                </collision>
+            </link>
+            <link name="static_box_5">
+                <pose>0 0 0.005 0 0 0</pose>
+                <collision name="static_box_collision_5">
+                    <geometry>
+                        <box>
+                            <size>0.17 0.105 0.01</size>
+                        </box>
+                    </geometry>
+                </collision>
+            </link>
+        </model>
+    </world>
+</sdf>

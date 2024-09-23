@@ -1,0 +1,249 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <link name="left_hip_yaw">
+        <inertial>
+            <origin xyz="-0.065362 -0.000128 -0.063947" rpy="0 0 0"/>
+            <mass value="0.842752"/>
+            <inertia ixx="0.001502" ixy="0.0" ixz="0.000533" iyy="0.001361" iyz="0.0" izz="0.001170"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://humanoid_description/meshes/mit_humanoid/left_hip_yaw.stl" scale="0.001 0.001 0.001"/>
+            </geometry>      
+        </visual>
+    </link>
+    <joint name="left_hip_yaw_joint" type="revolute">
+        <origin xyz="0 0.082 0" rpy="0 -0.174533 0"/>
+        <parent link="torso"/>
+        <child link="left_hip_yaw"/>
+        <axis xyz="0 0 1"/>
+        <limit effort="999" lower="-6.28" upper="6.28" velocity="50"/>
+        <dynamics damping="0.01" friction="0.2"/>
+    </joint>
+    <link name="left_hip_abad">
+        <inertial>
+            <origin xyz="0.067579 -0.013035 0.000132" rpy="0 0 0"/>
+            <mass value="1.199631"/>
+            <inertia ixx="0.001745" ixy="-0.000003" ixz="0.000082" iyy="0.003338" iyz="-0.000010" izz="0.001951"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://humanoid_description/meshes/mit_humanoid/left_hip_abad.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+    <joint name="left_hip_abad_joint" type="revolute">
+        <origin xyz="-0.06435 0 -0.07499" rpy="0.0 0.436332 0.0"/>
+        <parent link="left_hip_yaw"/>
+        <child link="left_hip_abad"/>
+        <axis xyz="1 0 0"/>
+        <limit effort="999" lower="-6.28" upper="6.28" velocity="50"/>
+        <dynamics damping="0.01" friction="0.2" rotor_inertia="0.01188"/>
+    </joint>
+    <link name="left_upper_leg">
+        <inertial>
+            <origin xyz="-0.001100 0.026032 -0.078842" rpy="0 0 0"/>
+            <mass value="2.634789"/>
+            <inertia ixx="0.024489" ixy="-0.000068" ixz="0.000512" iyy="0.026049" iyz="-0.002657" izz="0.003812"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://humanoid_description/meshes/mit_humanoid/left_leg_upper.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0.0 0.0 -0.16"/>
+            <geometry>
+                <box size="0.01 0.01 0.01"/>
+            </geometry>
+        </collision>
+    </link>
+    <joint name="left_hip_pitch_joint" type="revolute">
+        <origin xyz="0.08837 -0.00284 -0.01385" rpy="0 -0.261799 0"/>
+        <parent link="left_hip_abad"/>
+        <child link="left_upper_leg"/>
+        <axis xyz="0 1 0"/>
+        <limit effort="999" lower="-6.28" upper="6.28" velocity="50"/>
+        <dynamics damping="0.01" friction="0.2" rotor_inertia="0.0198"/>
+    </joint>    
+    <link name="left_lower_leg">
+        <inertial>
+            <origin xyz="0.005232 0.000457 -0.131581" rpy="0 0 0"/>
+            <mass value="0.346291"/>
+            <inertia ixx="0.002952" ixy="0.0" ixz="0.000083" iyy="0.002943" iyz="0.0" izz="0.000238"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://humanoid_description/meshes/mit_humanoid/left_leg_lower.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0.0 0.0 -0.15"/>
+            <geometry>
+                <box size="0.01 0.01 0.01"/>
+            </geometry>
+        </collision>
+    </link>
+    <joint name="left_knee_joint" type="revolute">
+        <origin xyz="-0.01306 0.0 -0.24916" rpy="0 0 0"/>
+        <parent link="left_upper_leg"/>
+        <child link="left_lower_leg"/>
+        <axis xyz="0 1 0"/>
+        <limit effort="999" lower="-6.28" upper="6.28" velocity="50"/>
+        <dynamics damping="0.01" friction="0.2" rotor_inertia="0.0792"/>
+    </joint>    
+    <link name="left_foot">
+        <inertial>
+            <origin xyz="0.022696 0.0 -0.013879" rpy="0 0 0"/>
+            <mass value="0.279583"/>
+            <inertia ixx="0.000092" ixy="0.0" ixz="-0.000054" iyy="0.08" iyz="0.0" izz="0.000769"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://humanoid_description/meshes/mit_humanoid/left_foot.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="1.57079 0 0" xyz="0.02 0.0 -0.03"/>
+            <geometry>
+                <box size="0.17 0.02 0.05"/>
+            </geometry>
+        </collision>
+    </link>
+    <joint name="left_ankle_joint" type="revolute">
+        <origin xyz="0.0 0.0 -0.2785" rpy="0 0 0"/>
+        <parent link="left_lower_leg"/>
+        <child link="left_foot"/>
+        <axis xyz="0 1 0"/>
+        <limit effort="999" lower="-6.28" upper="6.28" velocity="50"/>
+        <dynamics damping="0.01" friction="0.2" rotor_inertia="0.04752"/>
+    </joint>
+    <link name="right_hip_yaw">
+        <inertial>
+            <origin xyz="-0.065362 0.000128 -0.063947" rpy="0 0 0"/>
+            <mass value="0.842752"/>
+            <inertia ixx="0.001502" ixy="0.0" ixz="0.000533" iyy="0.001361" iyz="0.0" izz="0.001170"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://humanoid_description/meshes/mit_humanoid/left_hip_yaw.stl" scale="0.001 -0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+    <joint name="right_hip_yaw_joint" type="revolute">
+        <origin xyz="0 -0.082 0" rpy="0 -0.174533 0"/>
+        <parent link="torso"/>
+        <child link="right_hip_yaw"/>
+        <axis xyz="0 0 1"/>
+        <limit effort="999" lower="-6.28" upper="6.28" velocity="50"/>
+        <dynamics damping="0.01" friction="0.2" rotor_inertia="0.01188"/>
+    </joint>    
+    <link name="right_hip_abad">
+        <inertial>
+            <origin xyz="0.067579 0.013035 0.000132" rpy="0 0 0"/>
+            <mass value="1.199631"/>
+            <inertia ixx="0.001745" ixy="0.000003" ixz="0.000082" iyy="0.003338" iyz="0.000010" izz="0.001951"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://humanoid_description/meshes/mit_humanoid/left_hip_abad.stl" scale="0.001 -0.001 0.001"/>
+            </geometry>
+        </visual>
+    </link>
+    <joint name="right_hip_abad_joint" type="revolute">
+        <origin xyz="-0.06435 0 -0.07499" rpy="0.0 0.436332 0.0"/>
+        <parent link="right_hip_yaw"/>
+        <child link="right_hip_abad"/>
+        <axis xyz="1 0 0"/>
+        <limit effort="999" lower="-6.28" upper="6.28" velocity="50"/>
+        <dynamics damping="0.01" friction="0.2" rotor_inertia="0.01188"/>
+    </joint>    
+    <link name="right_upper_leg">
+        <inertial>
+            <origin xyz="-0.001100 -0.026032 -0.078842" rpy="0 0 0"/>
+            <mass value="2.634789"/>
+            <inertia ixx="0.024489" ixy="0.000068" ixz="0.000512" iyy="0.026049" iyz="0.002657" izz="0.003812"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://humanoid_description/meshes/mit_humanoid/left_leg_upper.stl" scale="0.001 -0.001 0.001"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0.0 0.0 -0.16"/>
+            <geometry>
+                <box size="0.01 0.01 0.01"/>
+            </geometry>
+        </collision>
+    </link>
+    <joint name="right_hip_pitch_joint" type="revolute">
+        <origin xyz="0.08837 0.00284 -0.01385" rpy="0 -0.261799 0"/>
+        <parent link="right_hip_abad"/>
+        <child link="right_upper_leg"/>
+        <axis xyz="0 1 0"/>
+        <limit effort="999" lower="-6.28" upper="6.28" velocity="50"/>
+        <dynamics damping="0.01" friction="0.2" rotor_inertia="0.0198"/>
+    </joint>    
+    <link name="right_lower_leg">
+        <inertial>
+            <origin xyz="0.005232 -0.000457 -0.131581" rpy="0 0 0"/>
+            <mass value="0.346291"/>
+            <inertia ixx="0.002952" ixy="0.0" ixz="0.000083" iyy="0.002943" iyz="0.0" izz="0.000238"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://humanoid_description/meshes/mit_humanoid/left_leg_lower.stl" scale="0.001 -0.001 0.001"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0.0 0.0 -0.16"/>
+            <geometry>
+                <box size="0.01 0.01 0.01"/>
+            </geometry>
+        </collision>
+    </link>
+    <joint name="right_knee_joint" type="revolute">
+        <origin xyz="-0.01306 0.0 -0.24916" rpy="0 0 0"/>
+        <parent link="right_upper_leg"/>
+        <child link="right_lower_leg"/>
+        <axis xyz="0 1 0"/>
+        <limit effort="999" lower="-6.28" upper="6.28" velocity="50"/>
+        <dynamics damping="0.01" friction="0.2" rotor_inertia="0.0792"/>
+    </joint>
+    <link name="right_foot">
+        <inertial>
+            <origin xyz="0.022696 0.0 -0.013879" rpy="0 0 0"/>
+            <mass value="0.279583"/>
+            <inertia ixx="0.000092" ixy="0.0" ixz="-0.000054" iyy="0.08" iyz="0.0" izz="0.000769"/>
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://humanoid_description/meshes/mit_humanoid/left_foot.stl" scale="0.001 -0.001 0.001"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="1.57079 0 0" xyz="0.02 0.0 -0.03"/>
+            <geometry>
+                <box size="0.17 0.02 0.05"/>
+            </geometry>
+        </collision>
+    </link>
+    <joint name="right_ankle_joint" type="revolute">
+        <origin xyz="0.0 0.0 -0.2785" rpy="0 0 0"/>
+        <parent link="right_lower_leg"/>
+        <child link="right_foot"/>
+        <axis xyz="0 1 0"/>
+        <limit effort="999" lower="-6.28" upper="6.28" velocity="50"/>
+        <dynamics damping="0.01" friction="0.2" rotor_inertia="0.04752"/>
+    </joint>
+</robot>
