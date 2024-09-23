@@ -10,9 +10,9 @@ This branch is used for the quaternion MPC humanoid experiment.
 All you need to do is enter the following commands (if you are using other shells, such as zsh, please modify the commands and install.bash script accordingly):
 ```
 cd PATH_TO_YOUR_ROS_WORKSPACE/src
-git clone https://github.com/zixinz990/quat_mpc_humanoid.git
-git checkout clean # switch to 'clean' branch
-cd quat_mpc_humanoid
+git clone https://github.com/zixinz990/quaternion-mpc.git
+git checkout humanoid # switch to 'humanoid' branch
+cd quaternion-mpc
 bash ./install.bash
 cd ../..
 catkin build
