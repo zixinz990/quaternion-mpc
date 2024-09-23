@@ -37,4 +37,4 @@ Now, we are ready to run the MPC controller! In a new terminal, run:
 ```
 roslaunch legged_ctrl ${mpc_type}_mpc.launch # mpc_type can be quat or euler
 ```
-After running this, go back to the terminal where `set_default_joint_pos` is running, then press `Ctrl+C`, shut it down to make our MPC controller take over the control of the robot.
+After running this, go back to the terminal where `unitree_move_kinetic` is running, then press `Ctrl+C`, shut it down to let the robot fall.
