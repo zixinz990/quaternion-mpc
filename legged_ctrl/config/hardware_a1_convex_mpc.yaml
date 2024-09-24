@@ -1,0 +1,115 @@
+use_sim_time: true
+
+env_type: 1
+robot_type: 0         # 0: A1
+                      # 1: Go1
+controller_type: 1    # 0: QP
+                      # 1: Convex MPC
+                      # 2: Quaternion MPC
+kf_type: 0            # 0: no kf ( only available in Gazebo)
+                      # 1: linear KF
+terrain_adpt_state: 0 # 0: turn off terrain adaptation
+                      # 1: turn on terrain adaptation
+
+# Default foothold location in Relative frame
+default_foot_pos_FL_x: 0.17
+default_foot_pos_FL_y: 0.13
+default_foot_pos_FL_z: -0.3
+
+default_foot_pos_FR_x: 0.17
+default_foot_pos_FR_y: -0.13
+default_foot_pos_FR_z: -0.3
+
+default_foot_pos_RL_x: -0.17
+default_foot_pos_RL_y: 0.13
+default_foot_pos_RL_z: -0.3
+
+default_foot_pos_RR_x: -0.17
+default_foot_pos_RR_y: -0.13
+default_foot_pos_RR_z: -0.3
+
+# Gait frequency
+gait_freq: 2.2 # gait cycle per second
+
+# Convex MPC parameters
+mpc_update_period: 8.0
+mpc_horizon: 30
+
+q_weights_0: 60.0 # roll
+q_weights_1: 200.0 # pitch
+q_weights_2: 0.0 # yaw
+
+q_weights_3: 0.0 # pos x
+q_weights_4: 0.0 # pos y
+q_weights_5: 700.0 # pos z
+
+q_weights_6: 0.1 # omega x
+q_weights_7: 0.1 # omega y
+q_weights_8: 100.0 # omega z
+
+q_weights_9: 5.0 # vel x
+q_weights_10: 5.0  # vel y
+q_weights_11: 10.0 # vel z
+
+q_weights_12: 0.0
+
+r_weights_0: 0.0001
+r_weights_1: 0.0001
+r_weights_2: 0.0001
+
+r_weights_3: 0.0001
+r_weights_4: 0.0001
+r_weights_5: 0.0001
+
+r_weights_6: 0.0001
+r_weights_7: 0.0001
+r_weights_8: 0.0001
+
+r_weights_9: 0.0001
+r_weights_10: 0.0001
+r_weights_11: 0.0001
+
+mu: 0.6
+fz_max: 700.0
+
+# Swing leg control parameters
+kp_hip: 25.0
+kp_thigh: 25.0
+kp_calf: 25.0
+
+kd_hip: 0.08
+kd_thigh: 0.08
+kd_calf: 0.08
+
+# Joystick settings
+joystick_left_updown_axis: 1
+joystick_left_horiz_axis: 0
+joystick_right_updown_axis: 4
+joystick_right_horiz_axis: 3
+joystick_mode_switch_button: 0
+joystick_exit_button: 4
+
+# Joystick scaling
+joystick_velx_scale: 1.5   # m/s
+joystick_vely_scale: 0.4   # m/s
+joystick_height_vel: 0.1   # m/s
+joystick_max_height: 0.30  # m
+joystick_min_height: 0.03  # m
+joystick_yaw_rate_scale: 0.8  # rad/s
+joystick_roll_rate_scale: 0.4  # rad/s
+joystick_pitch_rate_scale: 0.4  # rad/s
+
+# Contact detection related 
+foot_sensor_max_value: 300.0
+foot_sensor_min_value: 0.0
+foot_sensor_ratio: 0.5
+
+# Robot parameters
+robot_mass: 12.0
+
+trunk_inertia_xx: 0.0158533
+trunk_inertia_xy: 0.0
+trunk_inertia_xz: 0.0
+trunk_inertia_yz: 0.0
+trunk_inertia_yy: 0.0377999
+trunk_inertia_zz: 0.0456542

@@ -1,0 +1,19 @@
+<launch>
+    <arg name="env_type" default="hardware"/>
+    <arg name="robot_type" default="go1"/>
+    <arg name="controller_type" default="quat_mpc"/>
+
+    <!-- Loading Config files -->
+    <rosparam file="$(find legged_ctrl)/config/$(arg env_type)_$(arg robot_type)_$(arg controller_type).yaml" command="load"/>
+
+    <!-- Load actual executables -->
+    <node pkg="legged_ctrl" type="main" name="main" output="screen"/>
+
+    <!-- Load joy node-->
+    <node pkg="joy" type="joy_node" name="joy_node" output="screen"/>
+
+    <!-- Record rosbag -->
+    <node pkg="rosbag" type="record" name="record_data"
+          args="record -o /home/rex/Documents/Dev/legged_mpc_control/bags/
+                /debug/torso_odom /debug/torso_odom_d /debug/mpc_grf /debug/mpc_time /torso_odom /trunk_imu"/>
+</launch>
