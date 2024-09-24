@@ -37,7 +37,7 @@ FetchContent_Declare(
         # SOURCE_DIR /home/zixin/Dev/ALTRO
         # GIT_REPOSITORY https://github.com/RoboticExplorationLab/ALTRO.git
         # GIT_TAG 0cb4f9c8ed7d619bfc3c127bb2f7826261bcc5a4
-        GIT_REPOSITORY GIT_REPOSITORY https://github.com/zixinz990/altro.git
+        GIT_REPOSITORY https://github.com/zixinz990/altro.git
         GIT_TAG b47202ffb9e09d5a2013d4661260988810e2eaef
 )
 FetchContent_MakeAvailable(Altro)
