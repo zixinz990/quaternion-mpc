@@ -4,10 +4,6 @@
 cd ~
 mkdir -p Documents/Dev/dependencies
 
-# Create unitree workspace
-cd ~/Documents/Dev
-mkdir -p unitree_ws/src
-
 # Install CMake 3.24.3
 cd /tmp
 sudo apt-get -y install wget libtool
@@ -39,16 +35,6 @@ cd build
 cmake ..
 make
 echo "export UNITREE_LEGGED_SDK_PATH=~/Documents/Dev/dependencies/unitree_legged_sdk" >> ~/.bashrc
-source ~/.bashrc
-
-# Install unitree things
-cd ~/Documents/Dev/unitree_ws/src
-git clone https://github.com/zixinz990/unitree_ros.git
-cd ..
-sudo apt-get update
-sudo apt-get install ros-noetic-catkin python3-catkin-tools -y
-catkin build
-echo "source ~/Documents/Dev/unitree_ws/devel/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 
 # Install OSQP
