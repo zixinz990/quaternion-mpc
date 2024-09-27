@@ -74,6 +74,7 @@ sudo make install
 # Install gram_savitzky_golay
 cd /tmp
 git clone https://github.com/arntanguy/gram_savitzky_golay.git
+cd gram_savitzky_golay
 git submodule init
 git submodule update --recursive
 mkdir build && cd build
