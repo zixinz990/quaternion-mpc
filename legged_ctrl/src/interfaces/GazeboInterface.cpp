@@ -83,12 +83,10 @@ namespace legged {
 
     bool GazeboInterface::send_cmd() {
         if (legged_state.joy.set_default_pos) {
-            // double default_pos[12] = {0.0, 0.67, -1.3, -0.0, 0.67, -1.3, 
-            //                           0.0, 0.67, -1.3, -0.0, 0.67, -1.3};
-            double default_pos[12] = {0.0, 3.927, -1.57,
-                                      0.0, 0.785, -1.57,
-                                      0.0, 0.785, -1.57,
-                                      0.0, 3.927, -1.57};
+            double default_pos[12] = {0.0, 0.67, -1.3,
+                                      0.0, 0.67, -1.3,
+                                      0.0, 0.67, -1.3,
+                                      0.0, 0.67, -1.3};
             for(int i = 0; i < 4; i++){
                 low_cmd.motorCmd[i*3 + 0].mode = 0x0A;
                 low_cmd.motorCmd[i*3 + 0].Kp = 70;

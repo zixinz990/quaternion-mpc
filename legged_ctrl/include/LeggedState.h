@@ -147,7 +147,6 @@ namespace legged {
         // 0 is standing, 1 is walking
         int ctrl_state = 0;
         bool set_default_pos = false;
-        bool zero_torque_mode = false;
 
         bool ctrl_state_change_request = false;
         bool default_pos_request = false;

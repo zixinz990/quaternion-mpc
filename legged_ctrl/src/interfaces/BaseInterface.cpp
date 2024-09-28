@@ -167,16 +167,10 @@ namespace legged {
             else legged_state.joy.set_default_pos = false;
 
             legged_state.joy.default_pos_request = false;
-
-            legged_state.joy.zero_torque_mode = false;
         }
 
-        if (legged_state.joy.zero_torque_request) {
-            if (!legged_state.joy.zero_torque_mode) legged_state.joy.zero_torque_mode = true;
-            else legged_state.joy.zero_torque_mode = false;
-            
+        if (legged_state.joy.zero_torque_request) {            
             legged_state.joy.zero_torque_request = false;
-
             legged_state.joy.set_default_pos = false;
         }
 

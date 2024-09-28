@@ -77,61 +77,18 @@ namespace legged {
         // notice cmd uses order FR, FL, RR, RL
         // swap_joint_indices << 3, 4, 5, 0, 1, 2, 9, 10, 11, 6, 7, 8;
 
-        cmd.levelFlag = UNITREE_LEGGED_SDK::LOWLEVEL;
+        cmd.levelFlag = UNITREE_LEGGED_SDK::LOWLEVEL;        
+        for (int i = 0; i < NUM_DOF; i++) {
+            int swap_i = swap_joint_indices(i);
+            int swap_leg = swap_foot_indices(i / LEG_DOF);
+            cmd.motorCmd[i].mode = 0x0A;
 
-        if (legged_state.joy.set_default_pos) {
-            // double default_pos[12] = {0.0, 0.67, -1.3,
-            //                           0.0, 0.67, -1.3,
-            //                           0.0, 0.67, -1.3,
-            //                           0.0, 0.67, -1.3};
-            double default_pos[12] = {0.0, 3.85, -1.42,
-                                      0.0, 0.71, -1.42,
-                                      0.0, 0.71, -1.42,
-                                      0.0, 3.85, -1.42};
-            double default_tau[12] = {0.0, 0.0, 0.0,
-                                      0.0, 0.0, 0.0,
-                                      0.0, 0.0, 0.0,
-                                      0.0, 0.0, 0.0};
-            double default_Kp[12] = {25.0, 0.0, 25.0,
-                                     25.0, 25.0, 25.0,
-                                     25.0, 25.0, 25.0,
-                                     25.0, 0.0, 25.0};
-            double default_Kd[12] = {2.0, 0.0, 2.0,
-                                     2.0, 2.0, 2.0,
-                                     2.0, 2.0, 2.0,
-                                     2.0, 0.0, 2.0};
-            for(int i = 0; i < 12; i++){
-                cmd.motorCmd[i].mode = 0x0A;
-                cmd.motorCmd[i].Kp = default_Kp[i];
-                cmd.motorCmd[i].Kd = default_Kd[i];
-                cmd.motorCmd[i].q = default_pos[i];
-                cmd.motorCmd[i].dq = 0;
-                cmd.motorCmd[i].tau = default_tau[i];
-            }
-            cmd.motorCmd[1].tau = 30 * (3.85 - legged_state.fbk.joint_pos[4]) + 1.0 * (0 - legged_state.fbk.joint_vel[4]);
-            cmd.motorCmd[10].tau = 30 * (3.85 - legged_state.fbk.joint_pos[7]) + 1.0 * (0 - legged_state.fbk.joint_vel[7]);
-        } else if (legged_state.joy.zero_torque_mode) {
-            for(int i = 0; i < 12; i++){
-                cmd.motorCmd[i].mode = 0x0A;
-                cmd.motorCmd[i].Kp = 0;
-                cmd.motorCmd[i].Kd = 0;
-                cmd.motorCmd[i].q = 0;
-                cmd.motorCmd[i].dq = 0;
-                cmd.motorCmd[i].tau = 0;
-            }
-        } else {
-            for (int i = 0; i < NUM_DOF; i++) {
-                int swap_i = swap_joint_indices(i);
-                int swap_leg = swap_foot_indices(i / LEG_DOF);
-                cmd.motorCmd[i].mode = 0x0A;
+            cmd.motorCmd[i].q = legged_state.ctrl.joint_ang_tgt(swap_i);
+            cmd.motorCmd[i].Kp = legged_state.param.kp_joint(swap_i % LEG_DOF);
+            cmd.motorCmd[i].dq = legged_state.ctrl.joint_vel_tgt(swap_i);
+            cmd.motorCmd[i].Kd = legged_state.param.kd_joint(swap_i % LEG_DOF);
 
-                cmd.motorCmd[i].q = legged_state.ctrl.joint_ang_tgt(swap_i);
-                cmd.motorCmd[i].Kp = legged_state.param.kp_joint(swap_i % LEG_DOF);
-                cmd.motorCmd[i].dq = legged_state.ctrl.joint_vel_tgt(swap_i);
-                cmd.motorCmd[i].Kd = legged_state.param.kd_joint(swap_i % LEG_DOF);
-
-                cmd.motorCmd[i].tau = legged_state.ctrl.joint_tau_tgt(swap_i);
-            }
+            cmd.motorCmd[i].tau = legged_state.ctrl.joint_tau_tgt(swap_i);
         }
         safe.PositionLimit(cmd);
         safe.PowerProtect(cmd, unitree_state, 10);

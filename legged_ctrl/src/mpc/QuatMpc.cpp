@@ -106,7 +106,7 @@ namespace legged {
         
         // For sin ang vel test
         if (state.joy.sin_ang_vel) {
-            state.ctrl.torso_ang_vel_d_body[0] = 3.14 / 4 * cos(2 * 3.14 / 500 * attitude_traj_count);
+            // state.ctrl.torso_ang_vel_d_body[0] = 3.14 / 4 * cos(2 * 3.14 / 500 * attitude_traj_count);
             // state.ctrl.torso_ang_vel_d_body[1] = 3.14 / 4 * cos(2 * 3.14 / 500 * attitude_traj_count);
             // state.ctrl.torso_ang_vel_d_body[2] = 3.14 / 4 * cos(2 * 3.14 / 500 * attitude_traj_count);
             attitude_traj_count += 1;

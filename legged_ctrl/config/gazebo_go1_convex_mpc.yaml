@@ -90,7 +90,6 @@ joystick_cross_up_down_axis:    7
 
 joystick_mode_switch_button:    0 # A
 joystick_default_pos_button:    1 # B
-joystick_zero_torque_button:    2 # X
 sin_ang_vel_button:             3 # Y
 joystick_exit_button:           4 # LB
 

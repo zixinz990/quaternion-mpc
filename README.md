@@ -53,7 +53,22 @@ If you want to run the controller in Gazebo, you need to launch the simulation f
 roslaunch unitree_gazebo normal.launch rname:=${robot_type}
 ```
 
-If you are using a real robot, make sure it is connected to the computer and the power is on. Make sure the robot is in a safe environment. Press `L2 + B` and `L1 + L2 + START` to get the robot down to the ground.
+If you are using a real robot, make sure it is connected to the computer and the power is on. To check if your computer has connected to the robot, try:
+
+```
+ping 192.168.123.161
+```
+
+If there is no messgae received, try:
+
+```
+sudo ifconfig enpxxx down  # enpxxx is your network device
+sudo ifconfig enpxxx 192.168.123.162/24
+sudo ifconfig enpxxx up
+ping 192.168.123.161
+```
+
+Make sure the robot is in a safe environment. Press `L2 + B` and `L1 + L2 + START` to get the robot down to the ground.
 
 To run the controller, enter the following command:
 
