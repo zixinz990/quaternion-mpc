@@ -11,9 +11,4 @@
 
     <!-- Load joy node-->
     <node pkg="joy" type="joy_node" name="joy_node" output="screen"/>
-
-    <!-- Record rosbag -->
-    <node pkg="rosbag" type="record" name="record_data"
-          args="record -o /home/zixin/Dev/legged_mpc_control/bags/
-                /debug/torso_odom /debug/torso_odom_d /debug/mpc_grf /debug/mpc_time /torso_odom /trunk_imu"/>
 </launch>

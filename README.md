@@ -58,11 +58,10 @@ If you are using a real robot, make sure it is connected to the computer and the
 To run the controller, enter the following command:
 
 ```
-roslaunch legged_ctrl ${env_type}_${robot_type}_${controller_type}.launch
+roslaunch legged_ctrl ${env_type}_go1_${controller_type}.launch
 ```
 
 - `env_type` can be `gazebo` or `hardware`.
-- `robot_type` can be `a1` or `go1`.
 - `controller_type` can be `convex_mpc` or `quat_mpc`.
 
 The following two commands can help you reset the robot's pose in Gazebo without restarting the simulation:

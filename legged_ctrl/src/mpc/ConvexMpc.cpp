@@ -33,7 +33,7 @@ namespace legged {
         };
         x_init.resize(n);
         x_init.setZero();
-        opts.verbose = Verbosity::Inner;
+        opts.verbose = Verbosity::Silent;
         opts.iterations_max = 5;
         opts.use_backtracking_linesearch = true;
     }
@@ -64,11 +64,13 @@ namespace legged {
             state.ctrl.torso_lin_vel_d_rel[0] -= 1.0 * h / 1000.0;
         }
 
-        if (state.ctrl.torso_lin_vel_d_rel[1] < state.joy.vely) {
-            state.ctrl.torso_lin_vel_d_rel[1] += 1.0 * h / 1000.0;
-        } else if (state.ctrl.torso_lin_vel_d_rel[1] > state.joy.vely) {
-            state.ctrl.torso_lin_vel_d_rel[1] -= 1.0 * h / 1000.0;
-        }
+        // if (state.ctrl.torso_lin_vel_d_rel[1] < state.joy.vely) {
+        //     state.ctrl.torso_lin_vel_d_rel[1] += 1.0 * h / 1000.0;
+        // } else if (state.ctrl.torso_lin_vel_d_rel[1] > state.joy.vely) {
+        //     state.ctrl.torso_lin_vel_d_rel[1] -= 1.0 * h / 1000.0;
+        // }
+
+        state.ctrl.torso_lin_vel_d_rel[1] = state.joy.vely;
 
         state.ctrl.torso_lin_vel_d_rel[2] = 0.0;
         state.ctrl.torso_lin_vel_d_world = state.fbk.torso_rot_mat_z * state.ctrl.torso_lin_vel_d_rel;

@@ -255,7 +255,7 @@ Eigen::Matrix<double, 9, 1> QuinticCurve::get_foot_swing_target(float t, float T
     double z_T = foot_pos_final(2);
     double z_dot_0 = 0.1;
     double z_dot_T = -0.1;
-    double z_apex = 0.08;
+    double z_apex = 0.1;
     Eigen::VectorXd z_con(6);
     z_con << z_0, z_T, z_dot_0, z_dot_T, z_apex, 0.0;
     a_z = C.inverse() * z_con;
