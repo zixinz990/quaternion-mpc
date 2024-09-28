@@ -13,47 +13,47 @@ terrain_adpt_state: 0 # 0: turn off terrain adaptation
                       # 1: turn on terrain adaptation
 
 # Default foothold location in Relative frame
-default_foot_pos_FL_x: 0.17
-default_foot_pos_FL_y: 0.13
+default_foot_pos_FL_x: 0.20
+default_foot_pos_FL_y: 0.14
 default_foot_pos_FL_z: -0.3
 
-default_foot_pos_FR_x: 0.17
-default_foot_pos_FR_y: -0.13
+default_foot_pos_FR_x: 0.20
+default_foot_pos_FR_y: -0.14
 default_foot_pos_FR_z: -0.3
 
-default_foot_pos_RL_x: -0.17
-default_foot_pos_RL_y: 0.13
+default_foot_pos_RL_x: -0.20
+default_foot_pos_RL_y: 0.14
 default_foot_pos_RL_z: -0.3
 
-default_foot_pos_RR_x: -0.17
-default_foot_pos_RR_y: -0.13
+default_foot_pos_RR_x: -0.20
+default_foot_pos_RR_y: -0.14
 default_foot_pos_RR_z: -0.3
 
 # Gait frequency
 gait_freq: 2.2 # gait cycle per second
 
 # Quaternion MPC parameters
-mpc_update_period: 30.0
-mpc_horizon: 10
+mpc_update_period: 10.0
+mpc_horizon: 20
 
-w: 450.0 # quaternion weight
+w: 50.0 # quaternion weight
 
-q_weights_0: 12.0  # x
-q_weights_1: 12.0  # y
-q_weights_2: 100.0  # z
+q_weights_0: 2.5 # x
+q_weights_1: 2.5 # y
+q_weights_2: 10.0 # z
 
 q_weights_3: 0.0 # qw
 q_weights_4: 0.0 # qx
 q_weights_5: 0.0 # qy
 q_weights_6: 0.0 # qz
 
-q_weights_7: 7.0 # lin vel x
-q_weights_8: 7.0 # lin vel y
-q_weights_9: 10.0 # lin vel z
+q_weights_7: 0.1 # lin vel x
+q_weights_8: 0.1 # lin vel y
+q_weights_9: 0.1 # lin vel z
 
-q_weights_10: 1.5 # ang vel x
-q_weights_11: 6.0 # ang vel y
-q_weights_12: 4.5 # ang vel z
+q_weights_10: 0.15 # ang vel x
+q_weights_11: 0.15 # ang vel y
+q_weights_12: 0.15 # ang vel z
 
 r_weights_0: 0.000001
 r_weights_1: 0.000001

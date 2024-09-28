@@ -19,7 +19,7 @@ namespace legged {
         }
 
         opts.verbose = Verbosity::Silent;
-        opts.iterations_max = 15;
+        opts.iterations_max = 10;
         opts.use_backtracking_linesearch = true;
         opts.use_quaternion = true;
         opts.quat_start_index = 3;
@@ -102,16 +102,7 @@ namespace legged {
         torso_pos_d_body_filtered.setZero();
         torso_pos_d_body_filtered << torso_pos_d_body_filter[0].CalculateAverage(state.ctrl.torso_pos_d_body[0]),
                                      torso_pos_d_body_filter[1].CalculateAverage(state.ctrl.torso_pos_d_body[1]),
-                                     torso_pos_d_body_filter[2].CalculateAverage(state.ctrl.torso_pos_d_body[2]);
-        
-        // For sin ang vel test
-        if (state.joy.sin_ang_vel) {
-            // state.ctrl.torso_ang_vel_d_body[0] = 3.14 / 4 * cos(2 * 3.14 / 500 * attitude_traj_count);
-            // state.ctrl.torso_ang_vel_d_body[1] = 3.14 / 4 * cos(2 * 3.14 / 500 * attitude_traj_count);
-            // state.ctrl.torso_ang_vel_d_body[2] = 3.14 / 4 * cos(2 * 3.14 / 500 * attitude_traj_count);
-            attitude_traj_count += 1;
-        }
-        
+                                     torso_pos_d_body_filter[2].CalculateAverage(state.ctrl.torso_pos_d_body[2]);        
         return true;
     }
 
@@ -144,6 +135,15 @@ namespace legged {
         state.ctrl.torso_quat_d.x() = torso_quat_d_vec[1];
         state.ctrl.torso_quat_d.y() = torso_quat_d_vec[2];
         state.ctrl.torso_quat_d.z() = torso_quat_d_vec[3];
+        
+        // For sin ang vel test
+        if (state.joy.sin_ang_vel) {
+            state.ctrl.torso_euler_d[0] = 3.14 / 8 * sin(2 * 3.14 / 900 * attitude_traj_count);
+            state.ctrl.torso_euler_d[1] = 3.14 / 8 * sin(2 * 3.14 / 900 * attitude_traj_count);
+            state.ctrl.torso_euler_d[2] = 3.14 / 8 * sin(2 * 3.14 / 900 * attitude_traj_count);
+            attitude_traj_count += 1;
+            state.ctrl.torso_quat_d = Utils::euler_to_quat(state.ctrl.torso_euler_d);
+        }        
 
         for (int i = 0; i <= horizon; i++) {
             x_ref.setZero();
@@ -158,7 +158,11 @@ namespace legged {
             x_ref[2] = torso_pos_d_body_filtered[2];
 
             // Orientation
-            x_ref.segment<4>(3) = torso_quat_d_vec;
+            // x_ref.segment<4>(3) = torso_quat_d_vec;
+            x_ref[3] = state.ctrl.torso_quat_d.w();
+            x_ref[4] = state.ctrl.torso_quat_d.x();
+            x_ref[5] = state.ctrl.torso_quat_d.y();
+            x_ref[6] = state.ctrl.torso_quat_d.z();
 
             // Linear velocity
             // x_ref.segment<3>(7) = state.ctrl.torso_lin_vel_d_body;

@@ -95,9 +95,11 @@ Default joystick settings (Xbox Controller):
 | Button | Function |
 | :----- | :------- |
 | Left stick | Control yaw angle and body's height |
-| Right stick | Control walking direction and speed|
+| Right stick | Control walking direction and speed |
+| Left cross| Control pitch and roll angle (only available for Quaternion MPC)|
 | `A` | Switch mode between "stand" and "walk" |
 | `B` | Enter/exit default position mode (only available in Gazebo) |
+| `Y` | Input sinusoidal attitude commend (only available for Quaternion MPC) |
 | `LB` | Shut down controller |
 
 To change this, modify the YAML files in `src/legged_ctrl/config`.
