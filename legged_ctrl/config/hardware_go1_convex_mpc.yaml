@@ -6,7 +6,7 @@ robot_type: 1         # 0: A1
 controller_type: 1    # 0: QP
                       # 1: Convex MPC
                       # 2: Quaternion MPC
-kf_type: 2            # 0: no kf ( only available in Gazebo)
+kf_type: 1            # 0: no kf ( only available in Gazebo)
                       # 1: linear KF
                       # 2: EKF
 terrain_adpt_state: 0 # 0: turn off terrain adaptation
@@ -81,14 +81,18 @@ kd_thigh: 2.0
 kd_calf: 2.0
 
 # Joystick settings
-joystick_left_updown_axis: 1
-joystick_left_horiz_axis: 0
-joystick_right_updown_axis: 3
-joystick_right_horiz_axis: 2
-joystick_mode_switch_button: 1
-joystick_default_pos_button: 2
-joystick_zero_torque_button: 0
-joystick_exit_button: 4
+joystick_left_updown_axis:      1
+joystick_left_horiz_axis:       0
+joystick_right_updown_axis:     4
+joystick_right_horiz_axis:      3
+joystick_cross_left_right_axis: 6
+joystick_cross_up_down_axis:    7
+
+joystick_mode_switch_button:    0 # A
+joystick_default_pos_button:    1 # B
+joystick_zero_torque_button:    2 # X
+sin_ang_vel_button:             3 # Y
+joystick_exit_button:           4 # LB
 
 # Joystick scaling
 joystick_velx_scale: 0.3  # m/s

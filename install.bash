@@ -37,29 +37,6 @@ make
 echo "export UNITREE_LEGGED_SDK_PATH=~/Documents/Dev/dependencies/unitree_legged_sdk" >> ~/.bashrc
 source ~/.bashrc
 
-# Install OSQP
-cd /tmp
-git clone --recursive https://github.com/oxfordcontrol/osqp
-cd osqp
-git checkout v0.6.3
-git submodule update --recursive
-mkdir build
-cd build
-cmake -G "Unix Makefiles" ..
-cmake --build .
-sudo cmake --build . --target install
-
-# Install OSQP-Eigen
-cd /tmp
-git clone https://github.com/robotology/osqp-eigen.git
-cd osqp-eigen
-git checkout v0.8.0
-mkdir build
-cd build
-cmake ..
-make
-sudo make install
-
 # Install CasADi
 cd /tmp
 git clone https://github.com/casadi/casadi.git -b main casadi
