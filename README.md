@@ -23,15 +23,15 @@ Branches:
 - `falling_cat`: Quaternion MPC for quadruped airborne attitude control.
 - `humanoid`: Quaternion MPC and Euler MPC for MIT humanoid balancing control.
 
-**September 25, 2024: working on fine-tuning, updating spider_dog branch, removing unnecessary code, and editing README.**
+**September 28, 2024: working on fine-tuning Quaternion MPC, updating spider_dog branch, removing unnecessary code, and editing README.**
 
 # Installation
 
 - Run in [Ubuntu 20.04](https://releases.ubuntu.com/focal/).
 - Make sure [git](https://git-scm.com/) and [ROS Noetic](http://wiki.ros.org/noetic/Installation/Ubuntu) have been installed properly.
-- Necessary dependencies are installed using the bash script [install.bash](https://github.com/RoboticExplorationLab/legged_mpc_control/blob/main/install.bash).
+- Necessary dependencies are installed using the bash script `install.bash`.
 
-All you need to do is enter the following commands (if you are using other shells, such as zsh, please modify the commands and [install.bash](https://github.com/RoboticExplorationLab/legged_mpc_control/blob/main/install.bash) script accordingly):
+All you need to do is enter the following commands (if you are using other shells, such as zsh, please modify the commands and `install.bash` script accordingly):
 ```
 cd PATH_TO_YOUR_CATKIN_WORKSPACE/src
 git clone https://github.com/zixinz990/quaternion-mpc.git
@@ -97,15 +97,15 @@ Default joystick settings (Xbox Controller):
 | Left stick | Control yaw angle and body's height |
 | Right stick | Control walking direction and speed|
 | `A` | Switch mode between "stand" and "walk" |
+| `B` | Enter/exit default position mode (only available in Gazebo) |
 | `LB` | Shut down controller |
 
-To change this, modify the YAML files in [src/legged_ctrl/config](https://github.com/RoboticExplorationLab/legged_mpc_control/tree/main/src/legged_ctrl/config).
+To change this, modify the YAML files in `src/legged_ctrl/config`.
 
 # Debug Instructions
 
-1. Sometimes ROS cannot find some packages. Make sure you have sourced the `devel/setup.bash` file in `legged_mpc_control` and `unitree_ws`, and there are related commands in your `~/.bashrc` file.
-2. If you have sourced `devel/setup.bash` file in `unitree_ws`, but ROS still gives error messages about Unitree packages when you build `legged_mpc_control`, try `catkin clean && catkin build && source devel/setup.bash` in `unitree_ws`.
-3. [install.bash](https://github.com/RoboticExplorationLab/legged_mpc_control/blob/main/install.bash) automatically installs CMake 3.24.3, because the program requires CMake 3.23+. If you think this will mess up your computer, feel free to delete the related commands in [install.bash](https://github.com/RoboticExplorationLab/legged_mpc_control/blob/main/install.bash). But to use the controller, you need to make sure you have CMake 3.23+ installed.
+1. Sometimes ROS cannot find some packages. Make sure you have sourced the `devel/setup.bash` file in your catkin workspace.
+2. The `install.bash` file automatically installs CMake 3.24.3, because the program requires CMake 3.23+. If you think this will mess up your computer, feel free to delete the related commands in `install.bash`. But to use the controller, you need to make sure you have CMake 3.23+ installed.
 
 # Development Guide
 
