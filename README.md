@@ -4,22 +4,24 @@ This branch is used for the quaternion MPC falling cat experiment.
 
 ## Installation
 - System: Ubuntu 20.04.
-- Make sure git and ROS Noetic has been installed properly.
-- Necessary dependencies are installed using the bash script `install.bash`.
+- Ensure that Git and ROS Noetic are properly installed.
+- Necessary dependencies are installed using the bash script `install.bash` (in the `main` branch).
 
-All you need to do is enter the following commands (if you are using other shells, such as zsh, please modify the commands and install.bash script accordingly):
+First, enter the following commands to install dependencies (if you are using other shells, such as zsh, please modify the commands and install.bash script accordingly). You can skip this if you have already installed them:
 ```
 cd PATH_TO_YOUR_ROS_WORKSPACE/src
 git clone https://github.com/zixinz990/quaternion-mpc.git
-git checkout falling_cat # switch to 'falling_cat' branch
 cd quaternion-mpc
-bash ./install.bash
-cd ../..
-catkin build
+bash ./install.bash # the installation script is in the main branch
+```
+Then switch to this branch and build your catkin workspace:
+```
+git checkout falling_cat # switch to "falling_cat" branch
+cd PATH_TO_YOUR_ROS_WORKSPACE
+catkin build # run "catkin clean" first if your workspace has been built using another branch
 echo "export PATH_TO_YOUR_ROS_WORKSPACE/devel/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
-
 ## Run the controller
 First, launch the simulation:
 ```
@@ -35,6 +37,6 @@ rosrun unitree_controller unitree_move_kinetic # set random initial attitude
 ```
 Now, we are ready to run the MPC controller! In a new terminal, run:
 ```
-roslaunch legged_ctrl ${mpc_type}_mpc.launch # mpc_type can be quat or euler
+roslaunch legged_ctrl ${mpc_type}_mpc.launch # mpc_type can be "quat" or "euler"
 ```
 After running this, go back to the terminal where `unitree_move_kinetic` is running, then press `Ctrl+C`, shut it down to let the robot fall.
