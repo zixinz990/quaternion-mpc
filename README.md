@@ -1,6 +1,6 @@
 # Quaternion MPC
 
-This repo is used for the quaternion MPC experiments.
+This codebase is used for the quaternion MPC experiments. It contains C++ implementations of quaternion MPC as well as Euler angle-based MPCs, and Gazebo simulation environments for MIT humanoid and Unitree quadruped robots.
 
 **Robots with Attitude: Singularity-Free Quaternion-Based Model-Predictive Control for Agile Legged Robots**, Zixin Zhang, John Z. Zhang, Shuo Yang, Zachary Manchester, [pdf](https://arxiv.org/abs/2409.09940)
 
@@ -22,8 +22,6 @@ Branches:
 - `spider_dog`: Quaternion MPC for Unitree Go1 chimney climbing control. Can be deployed in Gazebo and on hardware.
 - `falling_cat`: Quaternion MPC for quadruped airborne attitude control.
 - `humanoid`: Quaternion MPC and Euler MPC for MIT humanoid balancing control.
-
-**September 28, 2024: working on fine-tuning Quaternion MPC, updating spider_dog branch, removing unnecessary code, and editing README.**
 
 # Installation
 
@@ -108,6 +106,7 @@ To change this, modify the YAML files in `src/legged_ctrl/config`.
 
 1. Sometimes ROS cannot find some packages. Make sure you have sourced the `devel/setup.bash` file in your catkin workspace.
 2. The `install.bash` file automatically installs CMake 3.24.3, because the program requires CMake 3.23+. If you think this will mess up your computer, feel free to delete the related commands in `install.bash`. But to use the controller, you need to make sure you have CMake 3.23+ installed.
+3. Sometimes you may need to manually copy the `.so` file from the `legged_ctrl/src/estimation/casadi_ekf/casadi_lib` folder to the `/tmp` folder (`sudo` is required to do this).
 
 # Development Guide
 
