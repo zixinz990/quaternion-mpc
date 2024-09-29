@@ -4,18 +4,21 @@ This branch is used for the quaternion MPC humanoid experiment.
 
 ## Installation
 - System: Ubuntu 20.04.
-- Make sure git and ROS Noetic has been installed properly.
-- Necessary dependencies are installed using the bash script `install.bash`.
+- Ensure that Git and ROS Noetic are properly installed.
+- Necessary dependencies are installed using the bash script `install.bash` (in the `main` branch).
 
-All you need to do is enter the following commands (if you are using other shells, such as zsh, please modify the commands and install.bash script accordingly):
+First, enter the following commands to install dependencies (if you are using other shells, such as zsh, please modify the commands and install.bash script accordingly). You can skip this if you have already installed them:
 ```
 cd PATH_TO_YOUR_ROS_WORKSPACE/src
 git clone https://github.com/zixinz990/quaternion-mpc.git
-git checkout humanoid # switch to 'humanoid' branch
 cd quaternion-mpc
-bash ./install.bash
-cd ../..
-catkin build
+bash ./install.bash # the installation script is in the main branch
+```
+Then switch to this branch and build your catkin workspace:
+```
+git checkout humanoid # switch to "humanoid" branch
+cd PATH_TO_YOUR_ROS_WORKSPACE
+catkin build # run "catkin clean" first if your workspace has been built using another branch
 echo "export PATH_TO_YOUR_ROS_WORKSPACE/devel/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
@@ -51,3 +54,6 @@ roslaunch humanoid_mpc_control quat_mpc.launch
 ```
 
 After running this, go back to the terminal where `set_default_joint_pos` is running, then press `Ctrl+C`, shut it down to make our MPC controller take over the control of the robot.
+
+## TODO
+Add Euler MPC into this branch.
