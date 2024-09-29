@@ -34,9 +34,9 @@ All you need to do is enter the following commands (if you are using other shell
 ```
 cd PATH_TO_YOUR_CATKIN_WORKSPACE/src
 git clone https://github.com/zixinz990/quaternion-mpc.git
+cd quaternion-mpc
 git submodule init
 git submodule update --recursive
-cd quaternion-mpc
 bash ./install.bash
 cd ../..
 catkin build
