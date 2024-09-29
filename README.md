@@ -2,7 +2,7 @@
 
 This codebase is used for the quaternion MPC experiments. It contains C++ implementations of quaternion MPC as well as Euler angle-based MPCs, and Gazebo simulation environments for MIT humanoid and Unitree quadruped robots.
 
-**Robots with Attitude: Singularity-Free Quaternion-Based Model-Predictive Control for Agile Legged Robots**, Zixin Zhang, John Z. Zhang, Shuo Yang, Zachary Manchester, [pdf](https://arxiv.org/abs/2409.09940)
+**Robots with Attitude: Singularity-Free Quaternion-Based Model-Predictive Control for Agile Legged Robots**, Zixin Zhang, John Z. Zhang, Shuo Yang, Zachary Manchester, [pdf](https://arxiv.org/abs/2409.09940), [video](https://www.youtube.com/watch?v=3fuNFZZx2LA).
 
 ```
 @misc{zhang2024robotsattitudesingularityfreequaternionbased,
@@ -15,6 +15,7 @@ This codebase is used for the quaternion MPC experiments. It contains C++ implem
       url={https://arxiv.org/abs/2409.09940}, 
 }
 ```
+![ ](https://github.com/zixinz990/quaternion-mpc/blob/main/video%20opening.png)
 
 Branches:
 
