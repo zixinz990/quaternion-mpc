@@ -1,0 +1,3 @@
+[submodule "legged_ctrl/src/estimation/casadi_ekf"]
+	path = legged_ctrl/src/estimation/casadi_ekf
+	url = https://github.com/ShuoYangRobotics/legged-kalman-filter.git

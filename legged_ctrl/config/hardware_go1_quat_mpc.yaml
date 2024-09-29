@@ -1,0 +1,140 @@
+use_sim_time: false
+
+env_type: 1
+robot_type: 1         # 0: A1
+                      # 1: Go1
+controller_type: 2    # 0: QP
+                      # 1: Convex MPC
+                      # 2: Quaternion MPC
+kf_type: 2            # 0: no kf ( only available in Gazebo)
+                      # 1: linear KF
+                      # 2: EKF
+terrain_adpt_state: 0 # 0: turn off terrain adaptation
+                      # 1: turn on terrain adaptation
+
+# Default foothold location in Relative frame
+default_foot_pos_FL_x: 0.2104
+default_foot_pos_FL_y: 0.13
+default_foot_pos_FL_z: -0.26
+
+default_foot_pos_FR_x: 0.2104
+default_foot_pos_FR_y: -0.13
+default_foot_pos_FR_z: 0.26
+
+default_foot_pos_RL_x: -0.1658
+default_foot_pos_RL_y: 0.13
+default_foot_pos_RL_z: 0.26
+
+default_foot_pos_RR_x: -0.1658
+default_foot_pos_RR_y: -0.13
+default_foot_pos_RR_z: -0.26
+
+# Gait frequency
+gait_freq: 2.0 # gait cycle per second
+
+# Quaternion MPC parameters
+mpc_update_period: 10.0
+mpc_horizon: 20
+
+w: 60.0 # quaternion weight
+
+q_weights_0: 10.0  # x
+q_weights_1: 10.0  # y
+q_weights_2: 10.0  # z
+
+q_weights_3: 0.0 # qw
+q_weights_4: 0.0 # qx
+q_weights_5: 0.0 # qy
+q_weights_6: 0.0 # qz
+
+q_weights_7: 0.1 # lin vel x
+q_weights_8: 0.1 # lin vel y
+q_weights_9: 0.1 # lin vel z
+
+q_weights_10: 0.8 # ang vel x
+q_weights_11: 0.8 # ang vel y
+q_weights_12: 0.8 # ang vel z
+
+r_weights_0: 0.000001
+r_weights_1: 0.000001
+r_weights_2: 0.000001
+
+r_weights_3: 0.000001
+r_weights_4: 0.000001
+r_weights_5: 0.000001
+
+r_weights_6: 0.000001
+r_weights_7: 0.000001
+r_weights_8: 0.000001
+
+r_weights_9: 0.000001
+r_weights_10: 0.000001
+r_weights_11: 0.000001
+
+mu: 0.7
+fz_max: 700.0
+
+# Swing leg control parameters
+kp_hip: 13
+kp_thigh: 13
+kp_calf: 13
+
+kd_hip: 0.4
+kd_thigh: 0.4
+kd_calf: 0.4
+
+# Joystick settings
+joystick_left_updown_axis:      1
+joystick_left_horiz_axis:       0
+joystick_right_updown_axis:     3
+joystick_right_horiz_axis:      2
+joystick_cross_left_right_axis: 4
+joystick_cross_up_down_axis:    5
+
+joystick_mode_switch_button:    1 # A
+joystick_default_pos_button:    2 # B
+joystick_zero_torque_button:    0 # X
+sin_ang_vel_button:             3 # Y
+joystick_exit_button:           4 # LB
+
+# Joystick scaling
+joystick_velx_scale: 0.05   # m/s
+joystick_vely_scale: 0.05   # m/s
+joystick_height_vel: 0.05   # m/s
+joystick_max_height: 0.3  # m
+joystick_min_height: 0.03  # m
+joystick_yaw_rate_scale: 0.5  # rad/s
+joystick_roll_rate_scale: 0.5  # rad/s
+joystick_pitch_rate_scale: 0.5  # rad/s
+
+# Contact detection related 
+foot_sensor_max_value: 150.0
+foot_sensor_min_value: 0.0
+foot_sensor_ratio: 0.5
+
+# casadi EKF parameters
+ekf_inital_cov:               0.01
+ekf_noise_process_pos_xy:     0.01
+ekf_noise_process_pos_z:      0.01
+ekf_noise_process_vel_xy:     0.5
+ekf_noise_process_vel_z:      0.5
+ekf_noise_process_rot:        0.00001
+ekf_noise_process_foot:       0.01
+
+ekf_noise_measure_fk:         0.01
+ekf_noise_measure_vel:        0.5
+ekf_noise_measure_height:     99.0
+
+ekf_noise_opti_pos:           0.001
+ekf_noise_opti_vel:           999.0
+ekf_noise_opti_yaw:           0.001
+
+# Robot parameters
+robot_mass: 12.0
+
+trunk_inertia_xx: 0.0158533
+trunk_inertia_xy: 0.0
+trunk_inertia_xz: 0.0
+trunk_inertia_yz: 0.0
+trunk_inertia_yy: 0.0377999
+trunk_inertia_zz: 0.0456542

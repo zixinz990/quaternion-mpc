@@ -1,0 +1,14 @@
+<launch>
+    <arg name="env_type" default="gazebo"/>
+    <arg name="robot_type" default="go1"/>
+    <arg name="controller_type" default="quat_mpc"/>
+
+    <!-- Loading Config files -->
+    <rosparam file="$(find legged_ctrl)/config/$(arg env_type)_$(arg robot_type)_$(arg controller_type).yaml" command="load"/>
+
+    <!-- Load actual executables -->
+    <node pkg="legged_ctrl" type="main" name="main" output="screen"/>
+
+    <!-- Load joy node-->
+    <node pkg="joy" type="joy_node" name="joy_node" output="screen"/>
+</launch>
