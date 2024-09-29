@@ -1,22 +1,26 @@
 # Quaternion MPC
 
-This branch is used for the quaternion MPC falling cat experiment.
+This branch is used for the quaternion MPC chimney climbing experiment.
 
 ## Installation
-- System: Ubuntu 20.04
+- System: Ubuntu 20.04.
 - Ensure that Git and ROS Noetic are properly installed.
 - Necessary dependencies are installed using the bash script `install.bash` (in the `main` branch).
 
-All you need to do is enter the following commands (if you are using other shells, such as zsh, please modify the commands and install.bash script accordingly):
+First, enter the following commands to install dependencies (if you are using other shells, such as zsh, please modify the commands and install.bash script accordingly). You can skip this if you have already installed them:
 ```
 cd PATH_TO_YOUR_ROS_WORKSPACE/src
 git clone https://github.com/zixinz990/quaternion-mpc.git
 cd quaternion-mpc
 bash ./install.bash # the installation script is in the main branch
-git checkout spider_dog # switch to spider_dog branch
+```
+
+Then switch to this branch and build your catkin workspace:
+```
+git checkout spider_dog # switch to "spider_dog" branch
 git submodule init
 git submodule update --recursive
-cd ../..
+cd PATH_TO_YOUR_ROS_WORKSPACE
 catkin build # run "catkin clean" first if your workspace has been built using another branch
 echo "export PATH_TO_YOUR_ROS_WORKSPACE/devel/setup.bash" >> ~/.bashrc
 source ~/.bashrc
