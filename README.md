@@ -5,15 +5,16 @@ This codebase is used for the quaternion MPC experiments. It contains C++ implem
 **Robots with Attitude: Singularity-Free Quaternion-Based Model-Predictive Control for Agile Legged Robots**, Zixin Zhang, John Z. Zhang, Shuo Yang, Zachary Manchester, [pdf](https://arxiv.org/abs/2409.09940), [video](https://www.youtube.com/watch?v=3fuNFZZx2LA).
 
 ```
-@misc{zhang2024robotsattitudesingularityfreequaternionbased,
+@INPROCEEDINGS{11128267,
+      author={Zhang, Zixin and Zhang, John Z. and Yang, Shuo and Manchester, Zachary},
+      booktitle={2025 IEEE International Conference on Robotics and Automation (ICRA)}, 
       title={Robots with Attitude: Singularity-Free Quaternion-Based Model-Predictive Control for Agile Legged Robots}, 
-      author={Zixin Zhang and John Z. Zhang and Shuo Yang and Zachary Manchester},
-      year={2024},
-      eprint={2409.09940},
-      archivePrefix={arXiv},
-      primaryClass={cs.RO},
-      url={https://arxiv.org/abs/2409.09940}, 
-}
+      year={2025},
+      volume={},
+      number={},
+      pages={12337-12343},
+      keywords={Legged locomotion;Regulators;Attitude control;Quaternions;Humanoid robots;Linear algebra;Lie groups;Hardware;Quadrupedal robots;Predictive control},
+      doi={10.1109/ICRA55743.2025.11128267}}
 ```
 ![ ](https://github.com/zixinz990/quaternion-mpc/blob/main/video%20opening.png)
 
